@@ -1,11 +1,8 @@
 package si.soap.soapservice;
 
 import org.apache.axis.AxisFault;
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import si.soap.client.Calculator;
 import si.soap.client.CalculatorLocator;
-import si.soap.client.CalculatorSoap12Stub;
 import si.soap.client.CalculatorSoap_PortType;
 
 import javax.xml.rpc.ServiceException;
@@ -16,7 +13,10 @@ public class SoapserviceApplication {
 
     public static void main(String[] args) {
         //SpringApplication.run(SoapserviceApplication.class, args);
-        DAORest rest = new DAORest();
+        DAORestStu restStu = new DAORestStu();
+        DAORestEx restEx = new DAORestEx();
+        DAORestTea restTea = new DAORestTea();
+
 
         try {
             CalculatorLocator locater = new CalculatorLocator();
@@ -25,8 +25,12 @@ public class SoapserviceApplication {
             //proving soap functionality works
             System.out.println(tester+"");
             //Proof connecting to Restful service works
-            System.out.println(rest.getStudent(2).getSname());
-            System.out.println(rest.getStudents()[0].getSname());
+            System.out.println(restStu.getStudent(2).getSname());
+            System.out.println(restStu.getStudents()[0].getSname());
+            System.out.println(restEx.getExam(2).getEname());
+            System.out.println(restEx.getExams()[0].getEname());
+            System.out.println(restTea.getTeacher(2).getTname());
+            System.out.println(restTea.getTeachers()[0].getTname());
         } catch (AxisFault e) {
             e.printStackTrace();
         } catch (RemoteException e) {

@@ -1,19 +1,19 @@
-package si.soap.classes;
+package si.soap.classes.student;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-public class Link {
-        Embedded _embedded;
+public class LinkStu {
+        EmbeddedStu _embeddedStu;
         @JsonIgnore
         Object page;
         @JsonIgnore
         Object _links;
-        public Embedded get_embedded() {
-            return _embedded;
+        public EmbeddedStu get_embedded() {
+            return _embeddedStu;
         }
 
-        public void set_embedded(Embedded _embedded) {
-            this._embedded = _embedded;
+        public void set_embedded(EmbeddedStu _embeddedStu) {
+            this._embeddedStu = _embeddedStu;
         }
 
         public Object getPage() {

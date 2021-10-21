@@ -1,4 +1,4 @@
-package si.soap.classes;
+package si.soap.classes.student;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 

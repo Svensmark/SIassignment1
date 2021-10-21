@@ -1,8 +1,8 @@
-package si.soap.classes;
+package si.soap.classes.student;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-public class Embedded {
+public class EmbeddedStu {
     RestStudent[] students;
     @JsonIgnore
     Object _links;

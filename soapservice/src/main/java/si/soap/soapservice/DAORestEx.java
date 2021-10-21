@@ -1,9 +1,8 @@
 package si.soap.soapservice;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import si.soap.classes.Link;
-import si.soap.classes.RestStudent;
+import si.soap.classes.exam.LinkEx;
+import si.soap.classes.exam.RestExam;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -13,16 +12,16 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 
-public class DAORest {
-    public RestStudent getStudent(int id){
+public class DAORestEx {
+    public RestExam getExam(int id){
 
-        RestStudent student;
+        RestExam exam;
         URL url;
         String out;
         int status;
         {
             try {
-                url = new URL("http://localhost:8070/students/"+id);
+                url = new URL("http://localhost:8071/exams/"+id);
                 HttpURLConnection con = (HttpURLConnection) url.openConnection();
                 con.setRequestMethod("GET");
 
@@ -36,8 +35,8 @@ public class DAORest {
                 }
                 in.close();
                 con.disconnect();
-                student = new ObjectMapper().readValue(content,RestStudent.class);
-                return student;
+                exam = new ObjectMapper().readValue(content, RestExam.class);
+                return exam;
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             } catch (ProtocolException e) {
@@ -48,15 +47,15 @@ public class DAORest {
         }
         return null;
     }
-    public RestStudent[] getStudents(){
+    public RestExam[] getExams(){
 
-        RestStudent students[];
+        RestExam exams[];
         URL url;
         String out;
         int status;
         {
             try {
-                url = new URL("http://localhost:8070/students");
+                url = new URL("http://localhost:8071/exams");
                 HttpURLConnection con = (HttpURLConnection) url.openConnection();
                 con.setRequestMethod("GET");
 
@@ -70,9 +69,9 @@ public class DAORest {
                 }
                 in.close();
                 con.disconnect();
-                Link list = new ObjectMapper().readValue(content, Link.class);
-                students = list.get_embedded().getStudents();
-                return students;
+                LinkEx list = new ObjectMapper().readValue(content, LinkEx.class);
+                exams = list.get_embedded().getExams();
+                return exams;
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             } catch (ProtocolException e) {
@@ -84,4 +83,3 @@ public class DAORest {
         return null;
     }
 }
-
